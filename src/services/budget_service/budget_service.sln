@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "budget_service", "src\budget_service.csproj", "{CC9F00BA-D38F-47EA-B4FB-A98BA55D9BDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC9F00BA-D38F-47EA-B4FB-A98BA55D9BDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC9F00BA-D38F-47EA-B4FB-A98BA55D9BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC9F00BA-D38F-47EA-B4FB-A98BA55D9BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC9F00BA-D38F-47EA-B4FB-A98BA55D9BDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
