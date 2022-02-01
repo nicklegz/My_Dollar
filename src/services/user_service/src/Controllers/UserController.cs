@@ -22,6 +22,7 @@ public class UserController : ControllerBase
     }
     
     [AllowAnonymous]
+    [Produces("application/json")]
     [HttpPost("[controller]/sign-in")]
     public async Task<IActionResult> SignIn([FromBody] User user)
     {
@@ -46,10 +47,19 @@ public class UserController : ControllerBase
             break;
         }
 
-        return Ok(_tokenService.GenerateToken(user));
+        string accessToken = _tokenService.GenerateToken(user);
+        TokenResponse tokenResponse = new TokenResponse
+        {
+            access_token = accessToken,
+            token_type = "Bearer",
+            expires_in = 3600
+        };
+
+        return Ok(tokenResponse);
     }
 
     [AllowAnonymous]
+    [Produces("application/json")]
     [HttpPost("[controller]/sign-up")]
     public async Task<IActionResult> SignUp([FromBody] User user)
     {
