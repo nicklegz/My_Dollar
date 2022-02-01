@@ -27,10 +27,10 @@ public class Transaction : BaseEntity<int>
 
     [Column("username")]
     public string Username { get; set; }
-}
-
-public enum TransactionType
-{
-    Expense,
-    Income
+    
+    public enum TransactionType
+    {
+        Expense,
+        Income
+    }   
 }
