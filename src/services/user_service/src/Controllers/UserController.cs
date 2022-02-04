@@ -1,6 +1,5 @@
 using Extensions;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Repositories;
@@ -32,19 +31,10 @@ public class UserController : ControllerBase
             return NotFound(String.Format($"Username {0} does not exist.", user.Username));
         }
 
-        PasswordVerificationResult isValidPassword = PasswordExtensions.IsValidPassword(user);
-        switch(isValidPassword)
+        bool isValidPassword = await PasswordExtensions.IsValidPassword(user, _userRepository);
+        if(!isValidPassword)
         {
-            case PasswordVerificationResult.Failed:
-                return Unauthorized("Invalid password. Please try again.");
-            
-            case PasswordVerificationResult.SuccessRehashNeeded:
-                PasswordExtensions.HashUserPassword(user);
-                await _userRepository.UpdateAsync(user);
-                break;
-            
-            case PasswordVerificationResult.Success:
-            break;
+            return Unauthorized("Invalid password. Please try again.");
         }
 
         string accessToken = _tokenService.GenerateToken(user);
