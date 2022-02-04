@@ -23,6 +23,6 @@ public class AppDbContext : DbContext
                 entityTransaction.Property(transaction => transaction.EffectiveDate).HasColumnName("effective_date");
                 entityTransaction.Property(transaction => transaction.EntryDate).HasColumnName("entry_date");
                 entityTransaction.Property(transaction => transaction.Username).HasColumnName("username");
-            });        
+            });
     }
 }

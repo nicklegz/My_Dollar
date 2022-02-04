@@ -1,7 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Models;
-using Repositories;
 using Repositories.Interfaces;
 
 namespace Controllers;
@@ -11,16 +9,34 @@ namespace Controllers;
 public class TransactionController : ControllerBase
 {
     private readonly ITransactionRepository _transactionRepo;
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public TransactionController(ITransactionRepository transactionRepo)
+    public TransactionController(ITransactionRepository transactionRepo, IHttpContextAccessor httpContextAccessor)
     {
         _transactionRepo = transactionRepo;
+        _httpContextAccessor = httpContextAccessor;
     }
 
     [HttpGet]
     [Authorize]
-    public IActionResult GetListTransactions()
+    public async Task<IActionResult> GetListTransactions()
     {
-        return Ok();
+        try
+        {
+            var username = _httpContextAccessor.HttpContext.User.Identity.Name;
+            if (username == null || string.IsNullOrWhiteSpace(username))
+            {
+                return BadRequest();
+            }
+
+            var listTransactions = await _transactionRepo.GetListTransactionsAsync(username);
+
+            return Ok(listTransactions);
+        }
+
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }

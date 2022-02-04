@@ -16,11 +16,15 @@ CorsPolicyConfig.ConfigureCorsPolicy(builder.Services, "CorsPolicy");
 
 JwtConfig.ConfigureJwtAuthentication(builder.Services, builder.Configuration);
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+DbInit.CreateDbIfNotExists(app);
 
 if (app.Environment.IsDevelopment())
 {

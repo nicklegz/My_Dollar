@@ -1,21 +1,47 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
+
+
   <PropertyGroup>
+
     <TargetFramework>net6.0</TargetFramework>
+
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>90f69512-18fb-4529-9f67-0ee122d05417</UserSecretsId>
+    <UserSecretsId>e353458f-7056-431b-acdf-8277fe2bf284</UserSecretsId>
+
   </PropertyGroup>
 
+
+
   <ItemGroup>
+
     <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.1" />
+
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.1" />
+
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.1">
+
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+
       <PrivateAssets>all</PrivateAssets>
+
     </PackageReference>
+
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.2" />
+
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+
   </ItemGroup>
 
+
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+
+
 </Project>
+

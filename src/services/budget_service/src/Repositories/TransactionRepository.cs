@@ -22,8 +22,7 @@ public class TransactionRepository : ITransactionRepository
     public async Task<Transaction> GetTransactionAsync(string username, int transactionId)
     {
         return await _context.Transactions.FirstOrDefaultAsync(
-            transaction => transaction.Username == username && transaction.Id == transactionId
-            );
+            transaction => transaction.Username == username && transaction.Id == transactionId);
     }
 
     public async Task<int> CreateTransactionAsync(Transaction transaction)
