@@ -2,6 +2,7 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Interfaces;
 using Repositories;
+using Config;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,11 @@ builder.Services.AddDbContext<AppDbContext>(
         builder.Configuration["MyDollar:DBConnectionString"]));
 
 builder.Services.AddTransient<ITransactionRepository, TransactionRepository>();
+
+CorsPolicyConfig.ConfigureCorsPolicy(builder.Services, "CorsPolicy");
+
+JwtConfig.ConfigureJwtAuthentication(builder.Services, builder.Configuration);
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -22,7 +28,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-//app.UseHttpsRedirection();
+app.UseAuthentication();
 
 app.UseAuthorization();
 

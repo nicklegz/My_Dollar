@@ -6,7 +6,9 @@ using Repositories.Interfaces;
 
 namespace Controllers;
 
-public class TransactionController : BaseController
+[Route("api/[controller]")]
+[ApiController]
+public class TransactionController : ControllerBase
 {
     private readonly ITransactionRepository _transactionRepo;
 
@@ -17,8 +19,8 @@ public class TransactionController : BaseController
 
     [HttpGet]
     [Authorize]
-    public async Task<IActionResult> GetListTransactions()
+    public IActionResult GetListTransactions()
     {
-        // return _transactionRepo.GetListTransactionsAsync();
+        return Ok();
     }
 }
